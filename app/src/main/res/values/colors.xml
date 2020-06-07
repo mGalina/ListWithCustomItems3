@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#155588</color>
+    <color name="colorAccent">#097FDD</color>
+
+    <color name="ic_bascetball">#FF5722</color>
+    <color name="ic_esports">#001525</color>
+    <color name="ic_football">#49291F</color>
+    <color name="ic_handball">#DF7496</color>
+    <color name="ic_hockey">#000000</color>
+    <color name="ic_kabaddi">#097FDD</color>
+    <color name="ic_motorsports">#4CAF50</color>
+    <color name="ic_rugby">#673AB7</color>
+    <color name="ic_tennis">#FFC107</color>
+    <color name="ic_valleyball">#8BC34A</color>
+</resources>
