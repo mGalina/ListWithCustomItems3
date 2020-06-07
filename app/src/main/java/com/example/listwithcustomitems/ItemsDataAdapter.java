@@ -5,8 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +17,6 @@ public class ItemsDataAdapter extends BaseAdapter {
     private List<ItemData> items;
 
     private LayoutInflater inflater;
-
-    private CompoundButton.OnCheckedChangeListener myCheckChangeList
-            = new CompoundButton.OnCheckedChangeListener() {
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            items.get((Integer) buttonView.getTag()).setChecked(isChecked);
-        }
-    };
 
     ItemsDataAdapter(Context context, List<ItemData> items) {
         if (items == null) {
@@ -65,7 +57,7 @@ public class ItemsDataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
@@ -76,15 +68,20 @@ public class ItemsDataAdapter extends BaseAdapter {
         ImageView image = view.findViewById(R.id.icon);
         TextView title = view.findViewById(R.id.title);
         TextView subtitle = view.findViewById(R.id.subtitle);
-        CheckBox checkBox = view.findViewById(R.id.checkbox);
+        Button delete = view.findViewById(R.id.btn_delete);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeItem(position);
+            }
+        });
 
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
-        checkBox.setOnCheckedChangeListener(myCheckChangeList);
-        checkBox.setTag(position);
-        checkBox.setChecked(itemData.isChecked());
 
         return view;
     }
+
 }

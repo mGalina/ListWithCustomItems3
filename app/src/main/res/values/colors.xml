@@ -14,4 +14,6 @@
     <color name="ic_rugby">#673AB7</color>
     <color name="ic_tennis">#FFC107</color>
     <color name="ic_valleyball">#8BC34A</color>
+
+    <color name="text_button">#FFFFFF</color>
 </resources>
