@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +12,10 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         fillImages();
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,15 +45,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         adapter = new ItemsDataAdapter(this, null);
         listView.setAdapter(adapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 showItemData(position);
             }
         });
@@ -62,6 +63,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void loadText(File textFile) {
+//        if (isExternalStorageReadable()) {
+//            File file = new File(getApplicationContext().getExternalFilesDir(null), "my.txt");
+//
+//            FileWriter writer = null;
+//            try {
+//                writer = new FileWriter(textFile, true);
+//                writer.append("test");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            finally {
+//                try {
+//                    writer.close();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//
+//            FileReader reader = null;
+//            try {
+//                reader.read();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            finally {
+//                try {
+//                    reader.close();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        }
+//    }
+//
+//    private boolean isExternalStorageReadable() {
+//        String state = Environment.getExternalStorageState();
+//        return Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+//    }
 
     private void fillImages() {
         images.add(getDrawable(R.drawable.ic_baseline_sports_basketball_24));
