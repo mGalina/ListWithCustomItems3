@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +79,8 @@ public class ItemsDataAdapter extends BaseAdapter {
         TextView title = view.findViewById(R.id.title);
         TextView subtitle = view.findViewById(R.id.subtitle);
         Button delete = view.findViewById(R.id.btn_delete);
+        Button add = view.findViewById(R.id.btn_add);
+
 
         delete.setOnClickListener(removeButtonClickListener);
         delete.setTag(position);
@@ -84,6 +88,7 @@ public class ItemsDataAdapter extends BaseAdapter {
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
+        add.setText(itemData.getUserText());
 
         return view;
     }

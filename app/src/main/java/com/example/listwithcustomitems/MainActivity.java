@@ -98,9 +98,10 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0, length = split.length; i < length;) {
                 String title = split[i++];
                 String subtitle = split[i++];
+                String userText = split [i++];
                 Drawable image = images.get(Integer.parseInt(split[i++]));
 
-                adapter.addItem(new ItemData(image, title, subtitle));
+                adapter.addItem(new ItemData(image, title, subtitle, userText));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
         writer.write(item.getTitle());
         writer.write(DIVIDER);
         writer.write(item.getSubtitle());
+        writer.write(DIVIDER);
+        writer.write(item.getUserText());
         writer.write(DIVIDER);
         writer.write(String.valueOf(images.indexOf(item.getImage())));
         writer.write(DIVIDER);
@@ -138,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
         ItemData item = new ItemData(
                 images.get(random.nextInt(images.size())),
                 "Sport" + adapter.getCount(),
-                "This is for me");
+                "This is for me",
+                "");
 
         adapter.addItem(item);
 

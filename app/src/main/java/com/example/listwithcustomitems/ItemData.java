@@ -7,11 +7,13 @@ public class ItemData {
     private Drawable image;
     private String title;
     private String subtitle;
+    private String userText;
 
-    public ItemData(Drawable image, String title, String subtitle) {
+    public ItemData(Drawable image, String title, String subtitle, String userText) {
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
+        this.userText = userText;
     }
 
     public Drawable getImage() {
@@ -24,5 +26,9 @@ public class ItemData {
 
     public String getSubtitle() {
         return subtitle;
+    }
+
+    public String getUserText() {
+        return userText;
     }
 }
