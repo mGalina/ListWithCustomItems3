@@ -13,17 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsDataAdapter extends BaseAdapter {
-
     private List<ItemData> items;
-
     private LayoutInflater inflater;
+    private RemoveItemClickListener removeItemClickListener;
+    // Чтобы при скролле не создавать лишние объекты. В джаве так лучше
+    private View.OnClickListener removeButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            removeItemClickListener.onRemoveItemClicked((int) v.getTag());
+        }
+    };
 
-    ItemsDataAdapter(Context context, List<ItemData> items) {
+    ItemsDataAdapter(Context context, List<ItemData> items, RemoveItemClickListener removeItemClickListener) {
         if (items == null) {
             this.items = new ArrayList<>();
         } else {
             this.items = items;
         }
+        this.removeItemClickListener = removeItemClickListener;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -66,16 +73,13 @@ public class ItemsDataAdapter extends BaseAdapter {
         ItemData itemData = items.get(position);
 
         ImageView image = view.findViewById(R.id.icon);
+
         TextView title = view.findViewById(R.id.title);
         TextView subtitle = view.findViewById(R.id.subtitle);
         Button delete = view.findViewById(R.id.btn_delete);
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeItem(position);
-            }
-        });
+        delete.setOnClickListener(removeButtonClickListener);
+        delete.setTag(position);
 
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
@@ -83,5 +87,4 @@ public class ItemsDataAdapter extends BaseAdapter {
 
         return view;
     }
-
 }
